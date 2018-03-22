@@ -1,0 +1,16 @@
+{
+  "name": "mike-sarah",
+  "version": "1.0.0",
+  "description": "package-lock",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "mike and sarah",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "pg": "^7.4.1"
+  }
+}
