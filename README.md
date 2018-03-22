@@ -58,6 +58,40 @@ _Your repository must include:_
 └── PULL_REQUEST_TEMPLATE.md
 └── README.md
 ```
+## Steps to Follow
+
+Getting this lab up and running is all about following a sequence of steps, and it is also immportant to know what those individual steps do. Also take note of the documentation provided in the lab directory. It will be helpful.
+
+**DO THESE STEPS IN ORDER. TAKE YOUR TIME. READ THE ERROR MESSAGES SO THAT WHEN YOU SEE THEM AGAIN YOU KNOW HOW TO DEBUG.**
+
+1. Do all of the usual forking and cloning and navigate into your copy of the `starter-code` directory in your terminal. This terminal tab/window will be for your access to the file system and for Git stuff. Go ahead and `code .` to get your editor open.
+2. Open your `server.js` file and set the proper value for your `constring` variable for your operating system and SQL setup. Also, pass in the `conString` as an argument where we instantiate a new Client.
+3. Back to the terminal: Make a copy of this terminal tab/window and be sure it is in the same directory where `server.js` is at the root level. This is where you will run your Node server. But not yet...
+3. Create ANOTHER terminal tab/window; the directory that this one is in does not matter. This is where you will open your SQL shell. Go ahead and run `psql` in this tab, and you should get your SQL shell prompt. Type in `\dt` and you should get back a "No relations" message.
+4. Now go back to the server tab and start the server. It should error, complaining that it cannot find the module `pg` (or it might complain about not finding express if you haven't already done a `npm i`, so do that and try again!). That is because we have not yet required `pg` into our server code nor have we installed it from NPM. So let's do those steps:
+5. In your server code, put `const pg = require('pg');` with your other variable declarations at the top.
+6. In your terminal, run `npm i --save pg` to load `pg` from NPM. Be sure to save the edits.
+7. Try running the server code again. It should work.
+8. Go to your SQL shell and `\dt` again. You should see the tables `articles` listed. Enter `SELECT COUNT(*) FROM articles;` and you should see that there are 250 records in the DB.
+9. Go to your browser and open `localhost:3000`. You should see the blog WITHOUT all of its articles. Dammit... now what? Something is wrong. Let's track it down.
+10. Oooohhhh.... trace the execution... `Article.fetchAll(articleView.initIndexPage);` is called in `index.html`... when we look in `article.fetchAll()` we see that it is doing a `$.get('/articles')`, so let's go look at that route in the server.
+11. ARGH THERE IS NO SQL IN THE `client.query()`!!! Let's fix that.
+12. In the empty quotes, enter `SELECT * FROM articles;` and save the file.
+13. Refresh the browser.
+14. Articles!!!!!!
+
+OK, from here on, start working through all of the `COMMENT` items in the code.
+
+Once you are done with that, finish the last two unfinished SQL queries. Sam will give those to you by 11:00 this morning if you have not got them yet. Try to write them on your own.
+
+How will you know if they work, though?
+
+Follow the steps in the `CRUD-testing.md` doc in the "cheatsheets" directory of the lab.
+
+Play around with things and have fun. Try entering new articles in the form. Break things. Fix things. Get your fingers dirty with all of this and seek to understand how it all fits together.
+
+Whee!!!!!!
+
 
 ## User Stories and Feature Tasks
 
